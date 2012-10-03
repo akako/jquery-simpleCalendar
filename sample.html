@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>jquery.simpleCalendar sample</title>
+<script type="text/javascript" src="./jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="./jquery.simpleCalendar.js"></script>
+<link rel="stylesheet" type="text/css" media="all" href="./jquery.simpleCalendar.css" />
+</head>
+<body>
+
+<h1>jquery.simpleCalendar sample</h1>
+
+
+<a href="https://github.com/akako/jquery-simpleCalendar">go to github >></a>
+
+
+<hr />
+
+
+<script type="text/javascript">
+    $(function() {
+        $('#calendar_default').simpleCalendar();
+    });
+</script>
+<h3>Default</h3>
+<div id="calendar_default"></div>
+
+
+<hr />
+
+
+<script type="text/javascript">
+    $(function() {
+        $('#calendar_paginglimit').simpleCalendar({
+            year: 1999,
+            month: 12,
+            previousMonthLimit: 0,
+            nextMonthLimit: 3
+        });
+    });
+</script>
+<h3>Specified default month & paging limit</h3>
+<div id="calendar_paginglimit"></div>
+
+
+<hr />
+
+
+<script type="text/javascript">
+    $(function() {
+        $('#calendar_localize').simpleCalendar({
+            headers: ['日', '月', '火', '水', '木', '金', '土'],
+            currentMonthFormatter: function(date) {return date.getFullYear() + '年' + (date.getMonth() + 1) + '月';},
+            previousMonthFormatter: function(date) {return '< ' + (date.getMonth() + 1) + '月';},
+            nextMonthFormatter: function(date) {return (date.getMonth() + 1) + '月 >';}
+        });
+    });
+</script>
+<h3>Localize</h3>
+<div id="calendar_localize"></div>
+
+
+<hr />
+
+
+<style type="text/css">
+    TABLE.simpleCalendarBig DIV.controller {position: relative;}
+    TABLE.simpleCalendarBig DIV.current {font-size: 15px;}
+    TABLE.simpleCalendarBig DIV.prev {cursor: pointer; position: absolute; left: 3px; bottom: 0px;}
+    TABLE.simpleCalendarBig DIV.next {cursor: pointer; position: absolute; right: 3px; bottom: 0px;}
+    TABLE.simpleCalendarBig TR TH {border: solid 1px darkgray; width: 60px; height: 40px; font-size: 16px;}
+    TABLE.simpleCalendarBig TR TD {border: solid 1px darkgray; text-align: center; width: 60px; height: 40px;}
+    TABLE.simpleCalendarBig TR TD.luckeyDay {border: dotted 1px green; background-color: yellow; cursor: pointer;}
+</style>
+<script type="text/javascript">
+    $(function() {
+        // create target dates to change cell class.
+        var today = new Date();
+        var luckeyDayDates = [];
+        luckeyDayDates.push(new Date(today.getFullYear(), today.getMonth(), 7));
+        luckeyDayDates.push(new Date(today.getFullYear(), today.getMonth(), 17));
+        luckeyDayDates.push(new Date(today.getFullYear(), today.getMonth(), 27));
+        
+        $('#calendar_tablecss').simpleCalendar({
+            tableClass: 'simpleCalendarBig',
+            cellClass: {luckeyDay: luckeyDayDates},
+            cellClick: function(e) {
+                for (var i = 0; i < luckeyDayDates.length; i++) {
+                    if (e.data.date.toString() == luckeyDayDates[i].toString()) {
+                        alert('Luckey day!!');
+                        break;
+                    }
+                }
+            }
+        });
+    });
+</script>
+<h3>Change table & cell css class</h3>
+<div id="calendar_tablecss"></div>
+
+
+<hr />
+
+
+<script type="text/javascript">
+    $(function() {
+        $('#calendar_clickaction').simpleCalendar({
+            previousClick: function(options) {alert('Previous clicked!!');},
+            nextClick: function(options) {alert('Next clicked!!');},
+            cellClick: function(e) {alert('Day: ' + e.data.date.getDate() + ' clicked!!');},
+        });
+    });
+</script>
+<h3>Click action</h3>
+<div id="calendar_clickaction"></div>
+
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+TABLE.simpleCalendar {
+    border: solid 2px gray;
+    background-color: white;
+    border-collapse: collapse;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+}
+
+TABLE.simpleCalendar DIV.controller {
+    position: relative;
+}
+
+TABLE.simpleCalendar DIV.current {
+    font-size: 15px;
+}
+
+TABLE.simpleCalendar DIV.prev {
+    cursor: pointer;
+    position: absolute;
+    left: 3px;
+    bottom: 0px;
+}
+
+TABLE.simpleCalendar DIV.next {
+    cursor: pointer;
+    position: absolute;
+    right: 3px;
+    bottom: 0px;
+}
+
+TABLE.simpleCalendar TR TH {
+    border: solid 1px darkgray;
+    width: 25px;
+    height: 20px;
+    font-size: 8px;
+}
+
+TABLE.simpleCalendar TR TD {
+    border: solid 1px darkgray;
+    text-align: center;
+    width: 25px;
+    height: 20px;
+}
+
+TABLE.simpleCalendar TR TD.saturday {
+    background-color: aliceblue;
+}
+
+TABLE.simpleCalendar TR TD.sunday, TABLE.simpleCalendar TR TD.holiday {
+    background-color: pink;
+}
+
+TABLE.simpleCalendar TR TD.today {
+    background-color: darkred;
+    font-weight: bold;
+    color: white;
+}
+
+TABLE.simpleCalendar TR TD.active:hover {
+    background-color: lightblue;
+    cursor: pointer;
+}
+
+TABLE.simpleCalendar TR TD.inactive {
+    background-color: lightgray;
+}
+
+TABLE.simpleCalendar TR TD.selected {
+    background-color: blue;
+}
