@@ -1,5 +1,5 @@
 /**
- * @author Kako Akihito <kako@qnote.co.jp>
+ * @author Kako Akihito <akakopublic@gmail.com>
  * @license New BSD License
  * @version 1.0.0
  */
