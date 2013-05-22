@@ -8,7 +8,7 @@ New BSD License.
 https://github.com/akako/jquery-simpleCalendar
 
 [sample]
-http://ijoru.sytes.net/jquery-simpleCalendar/sample.html
+http://ijoru.com/jquery-simpleCalendar/sample.html
 
 [mysite]
-http://ijoru.sytes.net/ijoru/
+http://ijoru.com/ijoru/
