@@ -1,8 +1,8 @@
 jquery-simpleCalendar
 =====================
 
-jquery simple calendar plugin.
-New BSD License.
+[documentation]
+https://github.com/akako/jquery-simpleCalendar.wiki.git
 
 [github]
 https://github.com/akako/jquery-simpleCalendar
