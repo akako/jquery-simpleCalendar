@@ -2,7 +2,7 @@ jquery-simpleCalendar
 =====================
 
 [documentation]
-https://github.com/akako/jquery-simpleCalendar.wiki.git
+https://github.com/akako/jquery-simpleCalendar/wiki/Simple-Calendar-Widget-Documentation
 
 [github]
 https://github.com/akako/jquery-simpleCalendar
