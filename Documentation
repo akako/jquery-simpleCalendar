@@ -1,0 +1,86 @@
+## Introduction 
+This is a simple calendar widget which can be used in a Web page to do the following: 
+* Display a simple calendar
+* Display a calendar for a specific month and year
+* Display a localized calendar
+* Highlight one or more specific dates
+
+## Prerequisite
+jQuery 1.8.2
+
+## Getting Started
+Include jQuery.simpleCalendar.css as shown in the following code block:
+
+    <link rel="stylesheet" type="text/css" media="all" href="./jquery.simpleCalendar.css" />   
+
+Include jquery-1.8.2.min.js and jQuery.simpleCalendar.js as shown in the following code block:
+    
+    <script type="text/javascript" src="./jquery-1.8.2.min.js"></script>
+
+    <script type="text/javascript" src="./jquery.simpleCalendar.js"></script>
+
+## Usage
+You can include the simple calendar widget in your Web page using the following codeblock:
+
+    $('#calendar_default').simpleCalendar(); //calendar_default is the div element ID.
+
+You can use the following options in the simple calendar widget by specifying them as a JSON object:
+
+|Option       | Description          | Default Value  |
+| ------------- |-------------| -----|
+| year      | Used to specify the year | current year |
+| month     | Used to specify the month     |   current month |
+| headerss | Used to specify the days of the week      |   ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'] |
+| month     | Used to specify the month     |   current month |
+tableClass    |    Used to specify the class    |    simpleCalendar    
+cellClass    |    Used to highlight the required date    
+currentMonthFormatter    |    Used to specify the format for the current month    |    yyyy/mm
+previousMonthFormatter    |    Used to specify the format for the previous month    |    mm>
+nextMonthFormatter    |    Used to specify the format for the next month    |    <mm
+previousMonthLimit    |    Used to specify the number of previous months to be displayed
+nextMonthLimit    |    Used to specify the number of next months to be displayed
+
+## Events
+You can define the following events for the simple calendar widget by specifying them as a JSON object: 
+
+|Event   | Description          |
+| ------------- |-------------|
+| previousClick | This event is triggered when the user clicks previous month
+| nexClick | This event is triggered when the user clicks next month
+| cellClick | This event is triggered when the user clicks any date
+
+## Examples 
+You can use the following code block to display a calendar for a specific month and year: 
+
+    $('#calendar_paginglimit').simpleCalendar({
+
+            year: 1999,
+
+            month: 12,
+
+            previousMonthLimit: 0,
+
+            nextMonthLimit: 3
+
+    }); 
+
+You can use the following code block  to display a localized calendar: 
+
+    $('#calendar_localize').simpleCalendar({
+
+            headers: ['日', '月', '火', '水', '木', '金', '土'],
+
+            currentMonthFormatter: function(date) {return date.getFullYear() + '年' + (date.getMonth() + 1) + '月';},
+
+            previousMonthFormatter: function(date) {return '< ' + (date.getMonth() + 1) + '月';},
+
+            nextMonthFormatter: function(date) {return (date.getMonth() + 1) + '月 >';}
+
+    });
+
+You can refer the following Web page for all the samples: 
+
+http://ijoru.com/jquery-simpleCalendar/sample.html
+
+## License
+New BSD License
