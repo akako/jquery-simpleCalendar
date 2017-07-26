@@ -1,6 +1,6 @@
 # jquery-simpleCalendar
 
-## documentation
+## Documentation
 https://github.com/akako/jquery-simpleCalendar/wiki/Simple-Calendar-Widget-Documentation
 
 ## github
