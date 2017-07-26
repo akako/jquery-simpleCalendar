@@ -111,8 +111,16 @@
 <script type="text/javascript">
     $(function() {
         $('#calendar_clickaction').simpleCalendar({
-            previousClick: function(options) {alert('Previous clicked!!');},
-            nextClick: function(options) {alert('Next clicked!!');},
+            previousClick: function(options) {
+                if (!confirm('Go to previous month?')) {
+                    return false;
+                }
+            },
+            nextClick: function(options) {
+                if (!confirm('Go to next month?')) {
+                    return false;
+                }
+            },
             cellClick: function(e) {alert('Day: ' + e.data.date.getDate() + ' clicked!!');}
         });
     });

@@ -1,7 +1,7 @@
 /**
  * @author Akihito Kako <akakopublic@gmail.com>
  * @license MIT License
- * @version 1.0.1
+ * @version 1.0.2
  */
 "use strict";
 (function($) {
@@ -66,11 +66,12 @@
                 if (options.nextMonthLimit !== undefined) options.nextMonthLimit++;
                 if (typeof(options.previousClick) === 'function') {
                     var newOptions = options.previousClick(options);
-                    if (undefined !== newOptions) {
-                        options = newOptions;
+                    if (typeof(newOptions) === 'object') {
+                        parent.simpleCalendar(newOptions);
+                    } else if (newOptions !== false) {
+                        parent.simpleCalendar(options);
                     }
                 }
-                parent.simpleCalendar(options);
             }).appendTo(controllerCell);
         }
         if (options.nextMonthLimit === undefined || options.nextMonthLimit > 0) {
@@ -82,11 +83,12 @@
                 if (options.nextMonthLimit !== undefined) options.nextMonthLimit--;
                 if (typeof(options.nextClick) === 'function') {
                     var newOptions = options.nextClick(options);
-                    if (undefined !== newOptions) {
-                        options = newOptions;
+                    if (typeof(newOptions) === 'object') {
+                        parent.simpleCalendar(newOptions);
+                    } else if (newOptions !== false) {
+                        parent.simpleCalendar(options);
                     }
                 }
-                parent.simpleCalendar(options);
             }).appendTo(controllerCell);
         }
         $('<div />').addClass('current').append(options.currentMonthFormatter(new Date(options.year, options.month - 1, 1))).appendTo(controllerCell);
