@@ -1,14 +1,10 @@
-jquery-simpleCalendar
-=====================
+# jquery-simpleCalendar
 
-[documentation]
+## documentation
 https://github.com/akako/jquery-simpleCalendar/wiki/Simple-Calendar-Widget-Documentation
 
-[github]
+## github
 https://github.com/akako/jquery-simpleCalendar
 
-[sample]
-http://ijoru.com/jquery-simpleCalendar/sample.html
-
-[mysite]
-http://ijoru.com/ijoru/
+## License
+MIT License
