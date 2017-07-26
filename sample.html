@@ -11,12 +11,9 @@
 
 <h1>jquery.simpleCalendar sample</h1>
 
-
 <a href="https://github.com/akako/jquery-simpleCalendar">go to github >></a>
 
-
 <hr />
-
 
 <script type="text/javascript">
     $(function() {
@@ -26,9 +23,7 @@
 <h3>Default</h3>
 <div id="calendar_default"></div>
 
-
 <hr />
-
 
 <script type="text/javascript">
     $(function() {
@@ -43,9 +38,7 @@
 <h3>Specified default month & paging limit</h3>
 <div id="calendar_paginglimit"></div>
 
-
 <hr />
-
 
 <script type="text/javascript">
     $(function() {
@@ -60,9 +53,7 @@
 <h3>Localize</h3>
 <div id="calendar_localize"></div>
 
-
 <hr />
-
 
 <style type="text/css">
     TABLE.simpleCalendarBig DIV.controller {position: relative;}
@@ -76,12 +67,18 @@
 <script type="text/javascript">
     $(function() {
         // create target dates to change cell class.
+        var getRandomDatesInMonth = function(year, month) {
+            var dates = [];
+            for (var i = 0; i < 5; i++) {
+                dates.push(new Date(year, month, Math.ceil(Math.random() * 30)));
+            }
+            return dates;
+        };
+
         var today = new Date();
         var luckeyDayDates = [];
-        luckeyDayDates.push(new Date(today.getFullYear(), today.getMonth(), 7));
-        luckeyDayDates.push(new Date(today.getFullYear(), today.getMonth(), 17));
-        luckeyDayDates.push(new Date(today.getFullYear(), today.getMonth(), 27));
-        
+        luckeyDayDates = getRandomDatesInMonth(today.getFullYear(), today.getMonth());
+
         $('#calendar_tablecss').simpleCalendar({
             tableClass: 'simpleCalendarBig',
             cellClass: {luckeyDay: luckeyDayDates},
@@ -92,6 +89,16 @@
                         break;
                     }
                 }
+            },
+            previousClick: function(options) {
+                luckeyDayDates = getRandomDatesInMonth(options.year, options.month - 1);
+                options.cellClass = {luckeyDay: luckeyDayDates};
+                return options;
+            },
+            nextClick: function(options) {
+                luckeyDayDates = getRandomDatesInMonth(options.year, options.month - 1);
+                options.cellClass = {luckeyDay: luckeyDayDates};
+                return options;
             }
         });
     });
@@ -99,22 +106,19 @@
 <h3>Change table & cell css class</h3>
 <div id="calendar_tablecss"></div>
 
-
 <hr />
-
 
 <script type="text/javascript">
     $(function() {
         $('#calendar_clickaction').simpleCalendar({
             previousClick: function(options) {alert('Previous clicked!!');},
             nextClick: function(options) {alert('Next clicked!!');},
-            cellClick: function(e) {alert('Day: ' + e.data.date.getDate() + ' clicked!!');},
+            cellClick: function(e) {alert('Day: ' + e.data.date.getDate() + ' clicked!!');}
         });
     });
 </script>
 <h3>Click action</h3>
 <div id="calendar_clickaction"></div>
-
 
 </body>
 </html>
