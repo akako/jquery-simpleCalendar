@@ -1,17 +1,17 @@
 /**
  * @author Akihito Kako <akakopublic@gmail.com>
  * @license MIT License
- * @version 1.0.2
+ * @version 1.0.3
  */
 "use strict";
 (function($) {
-    var getItems = function(year, month) {
+    var getItems = function(year, month, firstDayOfTheWeek) {
         var dates = [];
         var currentMonthStart = new Date(year, month - 1, 1);
         var currentMonthEnd = new Date(year, month, 0);
-        var start = 1 - currentMonthStart.getDay();
+        var start = 1 + firstDayOfTheWeek - currentMonthStart.getDay();
         var date = new Date(year, month - 1, start);
-        var end = new Date(year, month - 1, currentMonthEnd.getDate() + (6 - currentMonthEnd.getDay()));
+        var end = new Date(year, month - 1, currentMonthEnd.getDate() + (6 + firstDayOfTheWeek - currentMonthEnd.getDay()));
         for (var i = start + 1; date <= end; i++) {
             dates.push({
                 date: date,
@@ -30,6 +30,7 @@
             headers: ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'],
             tableClass: 'simpleCalendar',
             cellClass: {},
+            firstDayOfTheWeek: 0,
             previousClick: undefined,
             nextClick: undefined,
             cellClick: undefined,
@@ -66,12 +67,13 @@
                 if (options.nextMonthLimit !== undefined) options.nextMonthLimit++;
                 if (typeof(options.previousClick) === 'function') {
                     var newOptions = options.previousClick(options);
-                    if (typeof(newOptions) === 'object') {
-                        parent.simpleCalendar(newOptions);
-                    } else if (newOptions !== false) {
-                        parent.simpleCalendar(options);
+                    if (newOptions === false) {
+                        return;
+                    } else if(typeof(newOptions) === 'object') {
+                        options = newOptions;
                     }
                 }
+                parent.simpleCalendar(options);
             }).appendTo(controllerCell);
         }
         if (options.nextMonthLimit === undefined || options.nextMonthLimit > 0) {
@@ -83,24 +85,25 @@
                 if (options.nextMonthLimit !== undefined) options.nextMonthLimit--;
                 if (typeof(options.nextClick) === 'function') {
                     var newOptions = options.nextClick(options);
-                    if (typeof(newOptions) === 'object') {
-                        parent.simpleCalendar(newOptions);
-                    } else if (newOptions !== false) {
-                        parent.simpleCalendar(options);
+                    if (newOptions === false) {
+                        return;
+                    } else if(typeof(newOptions) === 'object') {
+                        options = newOptions;
                     }
                 }
+                parent.simpleCalendar(options);
             }).appendTo(controllerCell);
         }
         $('<div />').addClass('current').append(options.currentMonthFormatter(new Date(options.year, options.month - 1, 1))).appendTo(controllerCell);
         var headerRow = $('<tr />').appendTo(table);
         for (var i = 0; i < options.headers.length; i++) {
-            $('<th />').append(options.headers[i]).appendTo(headerRow);
+            $('<th />').append(options.headers[(i + options.firstDayOfTheWeek) % options.headers.length]).appendTo(headerRow);
         }
 
-        var items = getItems(options.year, options.month);
+        var items = getItems(options.year, options.month, options.firstDayOfTheWeek);
         for (var i = 0; i < items.length; i++) {
             var item = items[i];
-            if (item.date.getDay() === 0) {
+            if (item.date.getDay() === options.firstDayOfTheWeek) {
                 var row = $('<tr />').appendTo(table);
             }
             var cell = $('<td />').append(item.date.getDate()).addClass(item.active ? 'active' : 'inactive').appendTo(row);

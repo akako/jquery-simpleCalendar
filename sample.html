@@ -27,6 +27,18 @@
 
 <script type="text/javascript">
     $(function() {
+        $('#calendar_change_first_day').simpleCalendar({
+            firstDayOfTheWeek: 1
+        });
+    });
+</script>
+<h3>Change first day of the week</h3>
+<div id="calendar_change_first_day"></div>
+
+<hr />
+
+<script type="text/javascript">
+    $(function() {
         $('#calendar_paginglimit').simpleCalendar({
             year: 1999,
             month: 12,
